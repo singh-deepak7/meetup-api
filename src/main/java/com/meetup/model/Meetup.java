@@ -2,18 +2,19 @@ package com.meetup.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "meetup")
+@Table(name = "meetup", schema = "mysvc")
 public class Meetup implements Serializable {
     private long id;
     private String title;
     private String image;
     private String address;
     private String description;
-    private Date created_date;
-    private Date mofified_date;
+    private LocalDate created_date;
+    private LocalDate mofified_date;
     private String created_by;
     private String modified_by;
     private boolean active_sw;
@@ -21,7 +22,7 @@ public class Meetup implements Serializable {
     public Meetup(){
 
     }
-    public Meetup(long id, String title, String image, String address, String description, Date created_date, Date mofified_date, String created_by, String modified_by, boolean active_sw) {
+    public Meetup(long id, String title, String image, String address, String description, LocalDate created_date, LocalDate mofified_date, String created_by, String modified_by, boolean active_sw) {
         this.id = id;
         this.title = title;
         this.image = image;
@@ -44,7 +45,7 @@ public class Meetup implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -53,7 +54,7 @@ public class Meetup implements Serializable {
         this.title = title;
     }
 
-    @Column(name = "image_url", nullable = false)
+    @Column(name = "image_url")
     public String getImage() {
         return image;
     }
@@ -62,7 +63,7 @@ public class Meetup implements Serializable {
         this.image = image;
     }
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "address")
     public String getAddress() {
         return address;
     }
@@ -71,7 +72,7 @@ public class Meetup implements Serializable {
         this.address = address;
     }
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -81,20 +82,20 @@ public class Meetup implements Serializable {
     }
 
     @Column(name = "created_date")
-    public Date getCreated_date() {
+    public LocalDate getCreated_date() {
         return created_date;
     }
 
-    public void setCreated_date(Date created_date) {
+    public void setCreated_date(LocalDate created_date) {
         this.created_date = created_date;
     }
 
     @Column(name = "mofified_date")
-    public Date getMofified_date() {
+    public LocalDate getMofified_date() {
         return mofified_date;
     }
 
-    public void setMofified_date(Date mofified_date) {
+    public void setMofified_date(LocalDate mofified_date) {
         this.mofified_date = mofified_date;
     }
 

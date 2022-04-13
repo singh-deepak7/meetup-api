@@ -11,24 +11,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @SpringBootApplication
-@RestController
+//@RestController
 public class MeetupApiApplication {
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	/*@Autowired
+	private JdbcTemplate jdbcTemplate;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(MeetupApiApplication.class, args);
 	}
 
-	@GetMapping("/hello")
+/*	@GetMapping("/hello")
 	public String sayHello(@RequestParam(value = "myName", defaultValue = "World") String name) {
 		String sql = "select count(*) from mysvc.meetup";
 		String rows = jdbcTemplate.queryForObject(sql, String.class);
 		System.out.println("Number of rows are= " + rows);
 		//return String.format("Hello %s!", name);
 		return String.format("Number of records! %s", rows);
-	}
+	}*/
 
 /*	@Override
 	public void run(String... args)  {

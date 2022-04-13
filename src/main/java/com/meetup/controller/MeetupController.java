@@ -17,7 +17,7 @@ public class MeetupController {
     private MeetupRepository meetupRepository;
 
     @GetMapping("/meetup")
-    public List<Meetup> getAllEmployees() {
+    public List<Meetup> getAllMeetups() {
         return meetupRepository.findAll();
     }
 }
