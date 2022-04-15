@@ -7,6 +7,7 @@ import com.meetup.model.Meetup;
 import com.meetup.repository.FavoritesRepository;
 import com.meetup.repository.MeetupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +29,10 @@ public class FavoritesController {
 
     @GetMapping("/favorites")
     public List<Optional<FavMeetup>> getAllFavorites() {
-        List<Favorites>  favList = favoritesRepository.findAll();
-        List<Favorites>  filteredFavList = favList.stream().filter( x -> x.isActiveSw() == true).collect(Collectors.toList());
+        List<Favorites>  favList = favoritesRepository.findByActiveSw(true);
+       // List<Favorites>  filteredFavList = favList.stream().filter( x -> x.isActiveSw() == true).collect(Collectors.toList());
         List<Optional<FavMeetup>> meetupList = new ArrayList<>();
-        for(Favorites fav: filteredFavList){
+        for(Favorites fav: favList){
             FavMeetup favMeetup = new FavMeetup();
             Optional<Meetup> meetup = meetupRepository.findById(fav.getMeetupId());
 
@@ -56,7 +57,6 @@ public class FavoritesController {
     public ResponseEntity<Favorites> updateFavorites(@Valid @RequestBody Favorites favorites) throws ResourceNotFoundException {
         Favorites favorite = favoritesRepository.findById(favorites.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Favorite not found for this id :: " + favorites.getId()));
-        System.out.println(favorite.toString());
         favorite.setMeetupId(favorite.getMeetupId());
         favorite.setActiveSw(false);
         final Favorites updatedFavorite = favoritesRepository.save(favorite);
